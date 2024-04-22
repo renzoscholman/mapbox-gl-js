@@ -308,7 +308,7 @@ function transformAabbToTile(min: Point, max: Point, id: UnwrappedTileID): {min:
     };
 }
 
-function footprintTrianglesIntersect(footprint: Footprint, vertices: Array<Point>, indices: Array<number> | Uint16Array, indexOffset: number, indexCount: number, baseVertex: number, padding: number): boolean {
+function footprintTrianglesIntersect(footprint: Footprint, vertices: Array<Point>, indices: Array<number> | Uint32Array, indexOffset: number, indexCount: number, baseVertex: number, padding: number): boolean {
     const fpIndices = footprint.indices;
     const fpVertices = footprint.vertices;
     const candidateTriangles = [];

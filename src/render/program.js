@@ -359,20 +359,20 @@ class Program<Us: UniformBindings> {
         context.setStencilMode(StencilMode.disabled);
 
         const count = segment.primitiveLength * 3 * 2; // One triangle corresponds to 3 lines (each has 2 indices)
-        const offset = segment.primitiveOffset * 3 * 2 * 2; // One triangles corresponds to 3 lines (2 indices * 2 bytes per index)
+        const offset = segment.primitiveOffset * 3 * 2 * 4; // One triangles corresponds to 3 lines (2 indices * 2 bytes per index)
 
         if (instanceCount && instanceCount > 1) {
             gl.drawElementsInstanced(
                 gl.LINES,
                 count,
-                gl.UNSIGNED_SHORT,
+                gl.UNSIGNED_INT,
                 offset,
                 instanceCount);
         } else {
             gl.drawElements(
                 gl.LINES,
                 count,
-                gl.UNSIGNED_SHORT,
+                gl.UNSIGNED_INT,
                 offset
             );
         }
@@ -463,15 +463,15 @@ class Program<Us: UniformBindings> {
                 gl.drawElementsInstanced(
                     drawMode,
                     segment.primitiveLength * primitiveSize,
-                    gl.UNSIGNED_SHORT,
-                    segment.primitiveOffset * primitiveSize * 2,
+                    gl.UNSIGNED_INT,
+                    segment.primitiveOffset * primitiveSize * 4,
                     instanceCount);
             } else if (indexBuffer) {
                 gl.drawElements(
                     drawMode,
                     segment.primitiveLength * primitiveSize,
-                    gl.UNSIGNED_SHORT,
-                    segment.primitiveOffset * primitiveSize * 2);
+                    gl.UNSIGNED_INT,
+                    segment.primitiveOffset * primitiveSize * 4);
             } else {
                 gl.drawArrays(drawMode, segment.vertexOffset, segment.vertexLength);
             }

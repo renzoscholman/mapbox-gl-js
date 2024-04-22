@@ -170,7 +170,7 @@ function sortTriangles(centerLatitudes: number[], indices: TriangleIndexArray): 
         const i0 = idx * 3;
         const i1 = i0 + 1;
         const i2 = i1 + 1;
-        sortedIndices.emplaceBack(indices.uint16[i0], indices.uint16[i1], indices.uint16[i2]);
+        sortedIndices.emplaceBack(indices.uint32[i0], indices.uint32[i1], indices.uint32[i2]);
     }
 
     return [sortedCenterLatitudes, sortedIndices];

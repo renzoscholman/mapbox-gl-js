@@ -478,6 +478,38 @@ register(StructArrayLayout2ui4, 'StructArrayLayout2ui4');
 
 /**
  * Implementation of the StructArray layout:
+ * [0]: Uint32[2]
+ *
+ * @private
+ */
+class StructArrayLayout2ui8 extends StructArray implements IStructArrayLayout {
+    uint8: Uint8Array;
+    uint32: Uint32Array;
+
+    _refreshViews() {
+        this.uint8 = new Uint8Array(this.arrayBuffer);
+        this.uint32 = new Uint32Array(this.arrayBuffer);
+    }
+
+    emplaceBack(v0: number, v1: number): number {
+        const i = this.length;
+        this.resize(i + 1);
+        return this.emplace(i, v0, v1);
+    }
+
+    emplace(i: number, v0: number, v1: number): number {
+        const o2 = i * 2;
+        this.uint32[o2 + 0] = v0;
+        this.uint32[o2 + 1] = v1;
+        return i;
+    }
+}
+
+StructArrayLayout2ui8.prototype.bytesPerElement = 8;
+register(StructArrayLayout2ui8, 'StructArrayLayout2ui8');
+
+/**
+ * Implementation of the StructArray layout:
  * [0]: Int16[5]
  * [12]: Float32[4]
  * [28]: Int16[1]
@@ -647,17 +679,17 @@ register(StructArrayLayout2ub2f12, 'StructArrayLayout2ub2f12');
 
 /**
  * Implementation of the StructArray layout:
- * [0]: Uint16[3]
+ * [0]: Uint32[3]
  *
  * @private
  */
-class StructArrayLayout3ui6 extends StructArray implements IStructArrayLayout {
+class StructArrayLayout3ui12 extends StructArray implements IStructArrayLayout {
     uint8: Uint8Array;
-    uint16: Uint16Array;
+    uint32: Uint32Array;
 
     _refreshViews() {
         this.uint8 = new Uint8Array(this.arrayBuffer);
-        this.uint16 = new Uint16Array(this.arrayBuffer);
+        this.uint32 = new Uint32Array(this.arrayBuffer);
     }
 
     emplaceBack(v0: number, v1: number, v2: number): number {
@@ -668,15 +700,15 @@ class StructArrayLayout3ui6 extends StructArray implements IStructArrayLayout {
 
     emplace(i: number, v0: number, v1: number, v2: number): number {
         const o2 = i * 3;
-        this.uint16[o2 + 0] = v0;
-        this.uint16[o2 + 1] = v1;
-        this.uint16[o2 + 2] = v2;
+        this.uint32[o2 + 0] = v0;
+        this.uint32[o2 + 1] = v1;
+        this.uint32[o2 + 2] = v2;
         return i;
     }
 }
 
-StructArrayLayout3ui6.prototype.bytesPerElement = 6;
-register(StructArrayLayout3ui6, 'StructArrayLayout3ui6');
+StructArrayLayout3ui12.prototype.bytesPerElement = 12;
+register(StructArrayLayout3ui12, 'StructArrayLayout3ui12');
 
 /**
  * Implementation of the StructArray layout:
@@ -964,17 +996,17 @@ register(StructArrayLayout1ul3ui12, 'StructArrayLayout1ul3ui12');
 
 /**
  * Implementation of the StructArray layout:
- * [0]: Uint16[1]
+ * [0]: Uint32[1]
  *
  * @private
  */
-class StructArrayLayout1ui2 extends StructArray implements IStructArrayLayout {
+class StructArrayLayout1ui4 extends StructArray implements IStructArrayLayout {
     uint8: Uint8Array;
-    uint16: Uint16Array;
+    uint32: Uint32Array;
 
     _refreshViews() {
         this.uint8 = new Uint8Array(this.arrayBuffer);
-        this.uint16 = new Uint16Array(this.arrayBuffer);
+        this.uint32 = new Uint32Array(this.arrayBuffer);
     }
 
     emplaceBack(v0: number): number {
@@ -985,13 +1017,13 @@ class StructArrayLayout1ui2 extends StructArray implements IStructArrayLayout {
 
     emplace(i: number, v0: number): number {
         const o2 = i * 1;
-        this.uint16[o2 + 0] = v0;
+        this.uint32[o2 + 0] = v0;
         return i;
     }
 }
 
-StructArrayLayout1ui2.prototype.bytesPerElement = 2;
-register(StructArrayLayout1ui2, 'StructArrayLayout1ui2');
+StructArrayLayout1ui4.prototype.bytesPerElement = 4;
+register(StructArrayLayout1ui4, 'StructArrayLayout1ui4');
 
 /**
  * Implementation of the StructArray layout:
@@ -1401,18 +1433,19 @@ export {
     StructArrayLayout3i3f20,
     StructArrayLayout1ul4,
     StructArrayLayout2ui4,
+    StructArrayLayout2ui8,
     StructArrayLayout5i4f1i1ul2ui40,
     StructArrayLayout3i2i2i16,
     StructArrayLayout2f1f2i16,
     StructArrayLayout2ub2f12,
-    StructArrayLayout3ui6,
+    StructArrayLayout3ui12,
     StructArrayLayout3i2f2ui3ul3ui2f3ub1ul1i1ub60,
     StructArrayLayout2f9i15ui1ul4f1ub80,
     StructArrayLayout1f4,
     StructArrayLayout5f20,
     StructArrayLayout7f28,
     StructArrayLayout1ul3ui12,
-    StructArrayLayout1ui2,
+    StructArrayLayout1ui4,
     StructArrayLayout3f12,
     StructArrayLayout2f8,
     StructArrayLayout16f64,
@@ -1440,14 +1473,14 @@ export {
     StructArrayLayout2f1f2i16 as CollisionCircleLayoutArray,
     StructArrayLayout2ub2f12 as CollisionVertexArray,
     StructArrayLayout4f16 as CollisionVertexExtArray,
-    StructArrayLayout3ui6 as QuadTriangleArray,
+    StructArrayLayout3ui12 as QuadTriangleArray,
     StructArrayLayout1f4 as ZOffsetVertexArray,
     StructArrayLayout5f20 as GlobeVertexArray,
     StructArrayLayout5f20 as AtmosphereVertexArray,
     StructArrayLayout7f28 as StarsVertexArray,
-    StructArrayLayout3ui6 as TriangleIndexArray,
-    StructArrayLayout2ui4 as LineIndexArray,
-    StructArrayLayout1ui2 as LineStripIndexArray,
+    StructArrayLayout3ui12 as TriangleIndexArray,
+    StructArrayLayout2ui8 as LineIndexArray,
+    StructArrayLayout1ui4 as LineStripIndexArray,
     StructArrayLayout3f12 as SkyboxVertexArray,
     StructArrayLayout4i8 as TileBoundsArray,
     StructArrayLayout3f12 as ModelLayoutArray,

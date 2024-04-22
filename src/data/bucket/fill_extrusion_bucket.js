@@ -1254,7 +1254,7 @@ class FillExtrusionBucket implements Bucket {
                     const data = this.polygonSegments[feature.polygonSegmentIdx];
                     const centroidMin = this.centroidData[feature.centroidIdx].min;
                     const centroidMax = this.centroidData[feature.centroidIdx].max;
-                    const iArray = this.indexArray.uint16;
+                    const iArray = this.indexArray.uint32;
                     for (let i = data.triangleArrayOffset; i < data.triangleArrayOffset + data.triangleCount; i++) {
                         sortedTriangles.emplaceBack(iArray[i * 3], iArray[i * 3 + 1], iArray[i * 3 + 2]);
                     }
@@ -1493,7 +1493,7 @@ class FillExtrusionBucket implements Bucket {
                     if (footprintTrianglesIntersect(
                         region.footprint,
                         transformedVertices,
-                        this.footprintIndices.uint16,
+                        this.footprintIndices.uint32,
                         seg.indexOffset,
                         seg.indexCount,
                         -seg.vertexOffset,

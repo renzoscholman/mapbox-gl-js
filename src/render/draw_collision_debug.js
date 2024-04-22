@@ -159,12 +159,12 @@ function createQuadTriangles(quadCount: number): QuadTriangleArray {
     for (let i = 0; i < triCount; i++) {
         const idx = i * 6;
 
-        array.uint16[idx + 0] = i * 4 + 0;
-        array.uint16[idx + 1] = i * 4 + 1;
-        array.uint16[idx + 2] = i * 4 + 2;
-        array.uint16[idx + 3] = i * 4 + 2;
-        array.uint16[idx + 4] = i * 4 + 3;
-        array.uint16[idx + 5] = i * 4 + 0;
+        array.uint32[idx + 0] = i * 4 + 0;
+        array.uint32[idx + 1] = i * 4 + 1;
+        array.uint32[idx + 2] = i * 4 + 2;
+        array.uint32[idx + 3] = i * 4 + 2;
+        array.uint32[idx + 4] = i * 4 + 3;
+        array.uint32[idx + 5] = i * 4 + 0;
     }
 
     return array;

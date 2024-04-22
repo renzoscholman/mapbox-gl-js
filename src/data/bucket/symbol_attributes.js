@@ -79,7 +79,7 @@ export const collisionCircleLayout: StructArrayLayout = createLayout([ // used t
 ], 4);
 
 export const quadTriangle: StructArrayLayout = createLayout([
-    {name: 'triangle', components: 3, type: 'Uint16'},
+    {name: 'triangle', components: 3, type: 'Uint32'},
 ]);
 
 export const placement: StructArrayLayout = createLayout([

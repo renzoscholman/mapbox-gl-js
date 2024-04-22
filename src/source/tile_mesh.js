@@ -55,7 +55,7 @@ for (let i = 0; i < numTriangles; i++) {
 // temporary arrays we'll reuse for MARTINI mesh code
 const reprojectedCoords = new Uint16Array(gridSize * gridSize * 2);
 const used = new Uint8Array(gridSize * gridSize);
-const indexMap = new Uint16Array(gridSize * gridSize);
+const indexMap = new Uint32Array(gridSize * gridSize);
 
 type TileMesh = {
     vertices: TileBoundsArray,

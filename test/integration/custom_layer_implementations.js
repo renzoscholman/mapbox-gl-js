@@ -91,7 +91,7 @@ class Tent3D {
             x + d, y + d, z,
             x, y + d + d, 0,
             x + d, y + d + d, 0]);
-        const indexArray = new Uint16Array([
+        const indexArray = new Uint32Array([
             0, 1, 2,
             1, 2, 3,
             2, 3, 4,
@@ -113,7 +113,7 @@ class Tent3D {
         gl.enableVertexAttribArray(this.program.aPos);
         gl.vertexAttribPointer(this.program.aPos, 3, gl.FLOAT, false, 0, 0);
         gl.uniformMatrix4fv(this.program.uMatrix, false, matrix);
-        gl.drawElements(gl.TRIANGLES, 12, gl.UNSIGNED_SHORT, 0);
+        gl.drawElements(gl.TRIANGLES, 12, gl.UNSIGNED_INT, 0);
     }
 }
 

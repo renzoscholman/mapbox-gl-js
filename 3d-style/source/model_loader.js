@@ -391,7 +391,7 @@ function parseNodeFootprintMesh(meshes: Array<Mesh>): ?FootprintMesh {
         baseVertex = vertices.length;
 
         const vArray = mesh.vertexArray.float32;
-        const iArray = mesh.indexArray.uint16;
+        const iArray = mesh.indexArray.uint32;
 
         for (let i = 0; i < mesh.vertexArray.length; i++) {
             vertices.push(new Point(vArray[i * 3 + 0], vArray[i * 3 + 1]));

@@ -815,8 +815,8 @@ export class GlobeSharedBuffers {
             // Segments grid only
             const withoutSkirts = SegmentVector.simpleSegment(0, indexOffset, vertices.length, indices.length - indexOffset);
 
-            for (let i = 0; i < skirtsOnlyIndices.uint16.length; i += 3) {
-                indices.emplaceBack(skirtsOnlyIndices.uint16[i], skirtsOnlyIndices.uint16[i + 1], skirtsOnlyIndices.uint16[i + 2]);
+            for (let i = 0; i < skirtsOnlyIndices.uint32.length; i += 3) {
+                indices.emplaceBack(skirtsOnlyIndices.uint32[i], skirtsOnlyIndices.uint32[i + 1], skirtsOnlyIndices.uint32[i + 2]);
             }
 
             // Segments grid + skirts only
